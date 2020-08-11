@@ -26,10 +26,11 @@ describe Oystercard do
   end
 
   describe "deduct" do
+    let(:exit_station) { double :station }
     it "expects oystercard to deduct money from card" do
       oyster=Oystercard.new
       oyster.top_up(30)
-      expect(oyster.touch_out).to eq 29
+      expect(oyster.touch_out(exit_station)).to eq 29
     end
   end
 
@@ -59,17 +60,25 @@ describe Oystercard do
   end
 
   describe 'touch_out' do
-    let(:station) { double :station }
+    let(:entry_station) { double :station }
+    let(:exit_station) { double :station }
+
+    it 'stores exit station' do
+    subject.top_up(10)
+    subject.touch_in(entry_station)
+    subject.touch_out(exit_station)
+    expect(subject.exit_station).to eq exit_station
+end
     it 'reverts in_journey? back to false' do
       subject.top_up(5)
-      subject.touch_in(station)
-      subject.touch_out
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
       expect(subject).to_not be_in_journey
     end
     it "decreases balance by 1" do
       subject.top_up(5)
-      subject.touch_in(station)
-      expect{subject.touch_out}.to change{subject.balance}.by(-1)
+      subject.touch_in(entry_station)
+      expect{subject.touch_out(exit_station)}.to change{subject.balance}.by(-1)
     end
   end
 end
