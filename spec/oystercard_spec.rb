@@ -34,20 +34,24 @@ describe Oystercard do
 
   describe 'in_journey?' do
     it 'is not initialized to be on a journey' do
-      expect(subject).to_not be_in_journey 
+      expect(subject).to_not be_in_journey
     end
   end
 
-  describe 'touch_in' do 
+  describe 'touch_in' do
     it "changes in_journey? from false to true" do
-      
+      subject.top_up(5)
       subject.touch_in
       expect(subject).to be_in_journey
+    end
+    it "raises an error if not enough money on card" do
+      expect{subject.touch_in}.to raise_error "not enough funds"
     end
   end
 
   describe 'touch_out' do
     it 'reverts in_journey? back to false' do
+      subject.top_up(5)
       subject.touch_in
       subject.touch_out
       expect(subject).to_not be_in_journey
