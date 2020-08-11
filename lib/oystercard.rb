@@ -4,7 +4,7 @@ class Oystercard
 
   def initialize
     @balance = 0
-    @in_use = false
+    
   end
 
     MAX_BALANCE = 90
@@ -17,7 +17,7 @@ class Oystercard
   end
 
   def in_journey?
-    @in_use
+    @entry_station != nil
   end
 
   def touch_in(station)
@@ -28,6 +28,7 @@ class Oystercard
 
   def touch_out
     @in_use = false
+    @entry_station = nil
     deduct(MINIMUM_AMOUNT)
   end
 
