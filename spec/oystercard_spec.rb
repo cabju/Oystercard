@@ -37,4 +37,20 @@ describe Oystercard do
       expect(subject).to_not be_in_journey 
     end
   end
+
+  describe 'touch_in' do 
+    it "changes in_journey? from false to true" do
+      
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+  end
+
+  describe 'touch_out' do
+    it 'reverts in_journey? back to false' do
+      subject.touch_in
+      subject.touch_out
+      expect(subject).to_not be_in_journey
+    end
+  end
 end
