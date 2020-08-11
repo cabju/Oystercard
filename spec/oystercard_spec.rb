@@ -45,7 +45,8 @@ describe Oystercard do
       expect(subject).to be_in_journey
     end
     it "raises an error if not enough money on card" do
-      expect{subject.touch_in}.to raise_error "not enough funds"
+      minimum_amount = Oystercard::MINIMUM_AMOUNT
+      expect{subject.touch_in}.to raise_error "not enough funds."
     end
   end
 
@@ -55,6 +56,11 @@ describe Oystercard do
       subject.touch_in
       subject.touch_out
       expect(subject).to_not be_in_journey
+    end
+    it "decreases balance by 1" do
+      subject.top_up(5)
+      subject.touch_in
+      expect{subject.touch_out}.to change{subject.balance}.by(-1)
     end
   end
 end
