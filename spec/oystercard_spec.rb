@@ -31,4 +31,10 @@ describe Oystercard do
       expect(subject.deduct(10)).to eq 20
     end
   end
+
+  describe 'in_journey?' do
+    it 'is not initialized to be on a journey' do
+      expect(subject).to_not be_in_journey 
+    end
+  end
 end
