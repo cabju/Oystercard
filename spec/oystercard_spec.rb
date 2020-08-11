@@ -15,6 +15,10 @@ describe Oystercard do
     expect(subject).to respond_to(:top_up).with(1).argument
   end
 
+  it "provides an empty journey log as default" do
+    expect(subject.journey_log).to be_empty
+  end
+
   describe "top_up" do
   it "expects oystercard to topup amount put in" do
     expect(subject.top_up(2)).to eq 2

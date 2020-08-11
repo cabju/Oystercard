@@ -1,10 +1,10 @@
 class Oystercard
 
-  attr_reader :balance, :entry_station, :journey_log, :exit_station
+  attr_reader :balance, :entry_station, :exit_station, :journey_log
 
   def initialize
     @balance = 0
-    
+    @journey_log = {}
     
   end
 
