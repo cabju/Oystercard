@@ -12,7 +12,7 @@ describe Oystercard do
   end
 
   it "Expects oystercard to respond to 'top_up'" do
-    expect(subject).to respond_to(:top_up)
+    expect(subject).to respond_to(:top_up).with(1).argument
   end
 
 end
