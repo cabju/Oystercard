@@ -15,4 +15,9 @@ describe Oystercard do
     expect(subject).to respond_to(:top_up).with(1).argument
   end
 
+  describe "top_up" do
+  it "expects oystercard to topup amount put it" do
+    expect(subject.top_up(2)).to eq 2
+    end
+  end
 end
