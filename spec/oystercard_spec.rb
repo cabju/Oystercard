@@ -27,8 +27,9 @@ describe Oystercard do
 
   describe "deduct" do
     it "expects oystercard to deduct money from card" do
-      subject.top_up(30)
-      expect(subject.deduct(10)).to eq 20
+      oyster=Oystercard.new
+      oyster.top_up(30)
+      expect(oyster.touch_out).to eq 29
     end
   end
 
