@@ -40,6 +40,12 @@ describe Oystercard do
   end
 
   describe 'touch_in' do
+    let(:station) { double :station }
+    it "card remebers station where it touched in" do
+      subject.touch_in(station)
+      expect(subject.entry_station).to eq station
+
+    end
     it "changes in_journey? from false to true" do
       subject.top_up(5)
       subject.touch_in
