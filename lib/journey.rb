@@ -1,16 +1,34 @@
+require_relative 'oystercard.rb'
+
 class Journey
-  def journey_start
-    true
+
+  MINIMUM_AMOUNT = 1
+  PENTALTY_FARE = 6
+
+  def initalize 
+    @oystercard = nil
+    @entry_station = nil
+    @exit_station = nil
   end
 
-  def journey_end
-    true
+  def finish
+    @exit_station != nil
   end
 
   def calculate_fare
-    amount = 3
-    
-
+    if @entry_station && @exit_station
+       MINIMUM_AMOUNT
+    else 
+      PENTALTY_FARE
+    end
   end
-
+  
+  def complete?
+    @oystercard = Oystercard.new
+    if @oystercard.in_journey? != nil
+      return false
+    else 
+      return true
+    end
+  end
 end
