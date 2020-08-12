@@ -5,9 +5,9 @@ class Journey
   MINIMUM_AMOUNT = 1
   PENTALTY_FARE = 6
 
-  def initalize 
+  def initalize
     @oystercard = nil
-    @entry_station = nil
+    @entry_station = station
     @exit_station = nil
   end
 
@@ -18,17 +18,21 @@ class Journey
   def calculate_fare
     if @entry_station && @exit_station
        MINIMUM_AMOUNT
-    else 
+    else
       PENTALTY_FARE
     end
   end
-  
+
   def complete?
     @oystercard = Oystercard.new
     if @oystercard.in_journey? != nil
       return false
-    else 
+    else
       return true
     end
+  end
+
+  def entry_station
+      @entry_station
   end
 end

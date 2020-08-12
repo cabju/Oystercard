@@ -1,6 +1,7 @@
 require "journey"
 
 describe Journey do
+  let(:station) { double :station, zone: 1}
 
   it "checks if journey has finished" do
   expect(subject.finish).to eq false
@@ -13,5 +14,9 @@ describe Journey do
   it "checks if the journey is compleate" do
    expect(subject.complete?).to eq false
   end
-end
 
+
+  it "has an entry station" do
+    expect(subject.entry_station).to eq station
+    end
+  end
