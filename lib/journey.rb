@@ -5,7 +5,7 @@ class Journey
   MINIMUM_AMOUNT = 1
   PENTALTY_FARE = 6
 
-  def initalize
+  def initialize(station)
     @oystercard = nil
     @entry_station = station
     @exit_station = nil
@@ -33,6 +33,6 @@ class Journey
   end
 
   def entry_station
-      @entry_station
+    @entry_station
   end
 end
